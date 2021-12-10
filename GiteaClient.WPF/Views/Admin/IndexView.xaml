@@ -3,11 +3,15 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:viewModel="clr-namespace:GiteaClient.Core.ViewModels.Admin;assembly=GiteaClient.Core"
                   xmlns:local="clr-namespace:GiteaClient.WPF.Views.Admin"
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+                  d:DataContext="{x:Static viewModel:IndexViewModel}"
                   mc:Ignorable="d"
                   d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel Margin="25" />
+    <StackPanel Margin="25">
+        <Button Content="Users" Command="{Binding Path=NavigationUsersCommand}" />
+    </StackPanel>
 
 </views:MvxWpfView>

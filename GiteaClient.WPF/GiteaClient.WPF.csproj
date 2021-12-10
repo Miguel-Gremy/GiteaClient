@@ -8,6 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FontAwesome" Version="4.7.0" />
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+    <PackageReference Include="MaterialDesignColors" Version="2.0.4" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
     <PackageReference Include="MvvmCross" Version="8.0.2" />
     <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
@@ -21,6 +25,12 @@
 
   <ItemGroup>
     <Compile Update="Views\Admin\IndexView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\Users\AddView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\Admin\Users\IndexView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Issue\IndexView.xaml.cs">
@@ -48,6 +58,14 @@
 
   <ItemGroup>
     <Page Update="Views\Admin\IndexView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Admin\Users\AddView.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\Admin\Users\IndexView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
@@ -79,6 +97,13 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Admin\Cron\" />
+    <Folder Include="Views\Admin\Unadopted\" />
+    <Folder Include="Views\Admin\Orgs\" />
+    <Folder Include="Views\Admin\Users\Keys\" />
   </ItemGroup>
 
 </Project>

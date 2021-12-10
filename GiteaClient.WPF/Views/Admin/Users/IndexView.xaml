@@ -1,0 +1,27 @@
+﻿<views:MvxWpfView x:Class="GiteaClient.WPF.Views.Admin.Users.IndexView"
+                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                  xmlns:local="clr-namespace:GiteaClient.WPF.Views.Admin.Users"
+                  xmlns:viewModel="clr-namespace:GiteaClient.Core.ViewModels.Admin.Users;assembly=GiteaClient.Core"
+                  xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+                  mc:Ignorable="d"
+                  d:DataContext="{x:Static viewModel:IndexViewModel}"
+                  d:DesignHeight="450" d:DesignWidth="800">
+
+    <StackPanel Margin="25">
+        <Button Command="{Binding Path=NavigationAddCommand}" Content="Add" />
+        <Button Command="{Binding Path=RefreshUsersCommand}" Content="Update users" />
+        <ListView ItemsSource="{Binding Path=Users}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Path=FullName}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackPanel>
+
+</views:MvxWpfView>

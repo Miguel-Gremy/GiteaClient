@@ -13,4 +13,11 @@
     <ProjectReference Include="..\Lib\IOSwaggerGitea\src\IO.Swagger\IO.Swagger.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ViewModels\Admin\Cron\" />
+    <Folder Include="ViewModels\Admin\Unadopted\" />
+    <Folder Include="ViewModels\Admin\Orgs\" />
+    <Folder Include="ViewModels\Admin\Users\Keys\" />
+  </ItemGroup>
+
 </Project>
