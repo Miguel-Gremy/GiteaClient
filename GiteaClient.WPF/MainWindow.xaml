@@ -5,9 +5,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GiteaClient.WPF"
+        xmlns:viewModel="clr-namespace:GiteaClient.Core;assembly=GiteaClient.Core"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        d:DataContext="{x:Static viewModel:MainWindowViewModel}"
+        Title="Gitea client" Height="450" Width="800">
 </views:MvxWindow>

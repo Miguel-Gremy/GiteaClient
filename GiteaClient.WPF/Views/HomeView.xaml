@@ -5,12 +5,15 @@
                   xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
                   xmlns:viewModel="clr-namespace:GiteaClient.Core.ViewModels;assembly=GiteaClient.Core"
                   xmlns:local="clr-namespace:GiteaClient.WPF.Views"
+                  xmlns:asset="clr-namespace:GiteaClient.WPF.Assets"
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
                   d:DataContext="{x:Static viewModel:HomeViewModel}"
                   mc:Ignorable="d"
                   d:DesignHeight="450" d:DesignWidth="800">
 
-    <StackPanel Margin="25pt">
+    <StackPanel Style="{DynamicResource ResourceKey=GlobalStackPanel}">
+        <asset:TopMenu />
+
         <Button Command="{Binding Path=NavigationAdminCommand}" Content="Administration" />
     </StackPanel>
 

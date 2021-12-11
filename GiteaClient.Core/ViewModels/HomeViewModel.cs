@@ -52,6 +52,10 @@ namespace GiteaClient.Core.ViewModels
                 new MvxAsyncCommand(() => _navigationService.Navigate<Settings.IndexViewModel>());
             NavigationUserCommand =
                 new MvxAsyncCommand(() => _navigationService.Navigate<User.IndexViewModel>());
+
+
+            ReturnButtonVisibility = false;
+            HomeButtonVisibility = false;
         }
         #endregion
     }

@@ -8,7 +8,7 @@ namespace GiteaClient.WPF.Views
     /// <summary>
     /// Logique d'interaction pour HomeView.xaml
     /// </summary>
-    [MvxContentPresentation]
+    [MvxContentPresentation(WindowIdentifier = nameof(MainWindow), StackNavigation = true)]
     [MvxViewFor(typeof(HomeViewModel))]
     public partial class HomeView : MvxWpfView
     {

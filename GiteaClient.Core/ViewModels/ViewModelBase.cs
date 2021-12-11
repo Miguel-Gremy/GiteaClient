@@ -15,8 +15,20 @@ namespace GiteaClient.Core.ViewModels
     {
         #region Attribute
         protected IMvxNavigationService _navigationService { get; set; }
+        private bool _returnButtonVisibility = true;
+        private bool _homeButtonVisibility = true;
         #endregion
         #region Accessor
+        public bool ReturnButtonVisibility
+        {
+            get { return _returnButtonVisibility; }
+            set => SetProperty(ref _returnButtonVisibility, value);
+        }
+        public bool HomeButtonVisibility
+        {
+            get { return _homeButtonVisibility; }
+            set => SetProperty(ref _homeButtonVisibility, value);
+        }
         #endregion
         #region Constructor
         protected ViewModelBase(IMvxNavigationService navigationService)
@@ -26,6 +38,7 @@ namespace GiteaClient.Core.ViewModels
         #endregion
         #region Command
         public IMvxCommand ReturnCommand { get; set; }
+        public IMvxCommand ReturnHomeCommand { get; set; }
         #endregion
         #region Method
         protected static ObservableCollection<T> ListToObservable<T>(ICollection<T> list)
@@ -38,6 +51,7 @@ namespace GiteaClient.Core.ViewModels
         {
             base.Prepare();
             ReturnCommand = new MvxAsyncCommand(() => Task.Run(() => _navigationService.Close(this)));
+            ReturnHomeCommand = new MvxAsyncCommand(() => Task.Run(() => _navigationService.Navigate<HomeViewModel>()));
         }
         #endregion
     }

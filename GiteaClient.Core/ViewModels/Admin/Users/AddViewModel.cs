@@ -73,7 +73,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
             var createUserOption = new IO.Swagger.Model.CreateUserOption(Email, FullName, Login, MustChangePassword, Password, SendNotify, null, UserName, null);
 
             await _adminApi.AdminCreateUserAsync(createUserOption);
-            await _navigationService.Close(this);
+            await _navigationService.Navigate<IndexViewModel>();
         }
         #endregion
         #region Override_Method
