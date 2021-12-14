@@ -1,4 +1,5 @@
 ﻿using GiteaClient.Core.ViewModels;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Navigation;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace GiteaClient.Core
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public MainWindowViewModel(IMvxNavigationService navigationService) : base(navigationService)
+        public MainWindowViewModel(IMvxNavigationService navigationService, ILogger<MainWindowViewModel> logger) : base(navigationService, logger)
         {
 
         }

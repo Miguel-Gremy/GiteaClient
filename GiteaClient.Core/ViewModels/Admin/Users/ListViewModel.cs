@@ -1,4 +1,5 @@
 ﻿using IO.Swagger.Api;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System;
@@ -10,10 +11,10 @@ using System.Threading.Tasks;
 
 namespace GiteaClient.Core.ViewModels.Admin.Users
 {
-    public class IndexViewModel : ViewModelBase
+    public class ListViewModel : ViewModelBase
     {
         #region Attribute
-        public IAdminApi _adminApi { get; set; }
+        private IAdminApi _adminApi { get; set; }
         private ObservableCollection<IO.Swagger.Model.User> _users;
         private IO.Swagger.Model.User _selectedUser;
         #endregion
@@ -30,7 +31,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         }
         #endregion
         #region Constructor
-        public IndexViewModel(IMvxNavigationService navigationService, IAdminApi adminApi) : base(navigationService)
+        public ListViewModel(IMvxNavigationService navigationService, ILogger<ListViewModel> logger, IAdminApi adminApi) : base(navigationService, logger)
         {
             _adminApi = adminApi;
         }
@@ -42,7 +43,14 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         #region Method
         private async Task UpdateUsersAsync()
         {
-            Users = ListToObservable(await Task.Run(() => _adminApi.AdminGetAllUsers()));
+            try
+            {
+                Users = ListToObservable(await Task.Run(() => _adminApi.AdminGetAllUsers()));
+            }
+            catch (Exception e)
+            {
+                _logger.LogWarning(e.Message);
+            }
         }
         #endregion
         #region Override_Method

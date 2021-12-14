@@ -1,4 +1,5 @@
 ﻿using IO.Swagger.Api;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System;
@@ -59,7 +60,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         }
         #endregion
         #region Constructor
-        public AddViewModel(IMvxNavigationService navigationService, IAdminApi adminApi) : base(navigationService)
+        public AddViewModel(IMvxNavigationService navigationService, ILogger<AddViewModel> logger, IAdminApi adminApi) : base(navigationService, logger)
         {
             _adminApi = adminApi;
         }
@@ -72,8 +73,18 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         {
             var createUserOption = new IO.Swagger.Model.CreateUserOption(Email, FullName, Login, MustChangePassword, Password, SendNotify, null, UserName, null);
 
-            await _adminApi.AdminCreateUserAsync(createUserOption);
-            await _navigationService.Navigate<IndexViewModel>();
+            try
+            {
+                await _adminApi.AdminCreateUserAsync(createUserOption);
+            }
+            catch (Exception e)
+            {
+                using (_logger.BeginScope(e.Message))
+                {
+                    _logger.LogWarning("The message has been processed.");
+                }
+            }
+            await _navigationService.Close(this);
         }
         #endregion
         #region Override_Method

@@ -8,11 +8,11 @@ namespace GiteaClient.WPF.Views.Admin.Users
     /// <summary>
     /// Logique d'interaction pour IndexView.xaml
     /// </summary>
-    [MvxContentPresentation]
-    [MvxViewFor(typeof(IndexViewModel))]
-    public partial class IndexView : MvxWpfView
+    [MvxWindowPresentation]
+    [MvxViewFor(typeof(ListViewModel))]
+    public partial class ListView : MvxWindow
     {
-        public IndexView()
+        public ListView()
         {
             InitializeComponent();
         }

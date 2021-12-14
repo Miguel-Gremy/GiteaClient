@@ -1,18 +1,18 @@
-﻿using GiteaClient.Core.ViewModels.Admin.Users;
+﻿using GiteaClient.Core.ViewModels.About;
 using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 
-namespace GiteaClient.WPF.Views.Admin.Users
+namespace GiteaClient.WPF.Views.About
 {
     /// <summary>
     /// Logique d'interaction pour IndexView.xaml
     /// </summary>
     [MvxWindowPresentation]
-    [MvxViewFor(typeof(AddViewModel))]
-    public partial class AddView : MvxWindow
+    [MvxViewFor(typeof(ShowLogViewModel))]
+    public partial class ShowLogView : MvxWindow
     {
-        public AddView()
+        public ShowLogView()
         {
             InitializeComponent();
         }

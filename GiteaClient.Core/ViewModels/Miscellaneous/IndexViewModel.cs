@@ -1,4 +1,5 @@
-﻿using MvvmCross.Navigation;
+﻿using Microsoft.Extensions.Logging;
+using MvvmCross.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,7 @@ namespace GiteaClient.Core.ViewModels.Miscellaneous
         #region Accessor
         #endregion
         #region Constructor
-        public IndexViewModel(IMvxNavigationService navigationService) : base(navigationService)
+        public IndexViewModel(IMvxNavigationService navigationService, ILogger<IndexViewModel> logger) : base(navigationService, logger)
         {
         }
         #endregion

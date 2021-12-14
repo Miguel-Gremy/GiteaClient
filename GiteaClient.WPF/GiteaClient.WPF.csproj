@@ -23,13 +23,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Views\Admin\IndexView.xaml.cs">
+    <Compile Update="Views\About\ShowLogView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Admin\Users\AddView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\Admin\Users\IndexView.xaml.cs">
+    <Compile Update="Views\Admin\Users\ListView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\Issue\IndexView.xaml.cs">
@@ -56,7 +56,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Page Update="Views\Admin\IndexView.xaml">
+    <Page Update="Views\About\ShowLogView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
@@ -64,7 +64,7 @@
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\Admin\Users\IndexView.xaml">
+    <Page Update="Views\Admin\Users\ListView.xaml">
       <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
       <SubType>Designer</SubType>
     </Page>

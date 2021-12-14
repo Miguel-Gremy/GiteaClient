@@ -1,4 +1,5 @@
-﻿using MvvmCross.Commands;
+﻿using Microsoft.Extensions.Logging;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using System;
 using System.Collections.Generic;
@@ -15,19 +16,21 @@ namespace GiteaClient.Core.ViewModels
         #region Accessor
         #endregion
         #region Constructor
-        public HomeViewModel(IMvxNavigationService navigationService) : base(navigationService)
+        public HomeViewModel(IMvxNavigationService navigationService, ILogger<HomeViewModel> logger) : base(navigationService, logger)
         {
         }
         #endregion
         #region Command
-        public IMvxCommand NavigationAdminCommand { get; set; }
-        public IMvxCommand NavigationIssueCommand { get; set; }
-        public IMvxCommand NavigationMiscellaneousCommand { get; set; }
-        public IMvxCommand NavigationNotificationCommand { get; set; }
-        public IMvxCommand NavigationOrganizationCommand { get; set; }
-        public IMvxCommand NavigationRepositoryCommand { get; set; }
-        public IMvxCommand NavigationSettingsCommand { get; set; }
-        public IMvxCommand NavigationUserCommand { get; set; }
+        public IMvxCommand NavigationAdminUserListCommand { get; set; }
+        public IMvxCommand NavigationAdminUserAddCommand { get; set; }
+        //public IMvxCommand NavigationIssueCommand { get; set; }
+        //public IMvxCommand NavigationMiscellaneousCommand { get; set; }
+        //public IMvxCommand NavigationNotificationCommand { get; set; }
+        //public IMvxCommand NavigationOrganizationCommand { get; set; }
+        //public IMvxCommand NavigationRepositoryCommand { get; set; }
+        //public IMvxCommand NavigationSettingsCommand { get; set; }
+        //public IMvxCommand NavigationUserCommand { get; set; }
+        public IMvxCommand NavigationAboutShowLogCommand { get; set; }
         #endregion
         #region Method
         #endregion
@@ -36,26 +39,13 @@ namespace GiteaClient.Core.ViewModels
         {
             base.Prepare();
 
-            NavigationAdminCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Admin.IndexViewModel>());
-            NavigationIssueCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Issue.IndexViewModel>());
-            NavigationMiscellaneousCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Miscellaneous.IndexViewModel>());
-            NavigationNotificationCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Notification.IndexViewModel>());
-            NavigationOrganizationCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Organization.IndexViewModel>());
-            NavigationRepositoryCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Repository.IndexViewModel>());
-            NavigationSettingsCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Settings.IndexViewModel>());
-            NavigationUserCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<User.IndexViewModel>());
+            NavigationAdminUserListCommand =
+                new MvxAsyncCommand(() => _navigationService.Navigate<Admin.Users.ListViewModel>());
+            NavigationAdminUserAddCommand =
+                new MvxAsyncCommand(() => _navigationService.Navigate<Admin.Users.AddViewModel>());
 
-
-            ReturnButtonVisibility = false;
-            HomeButtonVisibility = false;
+            NavigationAboutShowLogCommand =
+                new MvxAsyncCommand(() => _navigationService.Navigate<About.ShowLogViewModel>());
         }
         #endregion
     }

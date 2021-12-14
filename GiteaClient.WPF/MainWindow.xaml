@@ -8,5 +8,5 @@
         xmlns:viewModel="clr-namespace:GiteaClient.Core;assembly=GiteaClient.Core"
         mc:Ignorable="d"
         d:DataContext="{x:Static viewModel:MainWindowViewModel}"
-        Title="Gitea client" Height="450" Width="800">
+        Title="Gitea client" Height="600" Width="450">
 </views:MvxWindow>
