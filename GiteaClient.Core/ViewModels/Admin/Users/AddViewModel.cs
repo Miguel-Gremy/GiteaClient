@@ -14,29 +14,17 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
     {
         #region Attribute
         private IAdminApi _adminApi { get; set; }
-        private string _email;
-        private string _fullName;
-        private string _login;
+        private IO.Swagger.Model.User _user;
         private string _userName;
         private string _password;
         private bool _mustChangePassword;
         private bool _sendNotify;
         #endregion
         #region Accessor
-        public string Email
+        public IO.Swagger.Model.User User
         {
-            get { return _email; }
-            set => SetProperty(ref _email, value);
-        }
-        public string FullName
-        {
-            get { return _fullName; }
-            set => SetProperty(ref _fullName, value);
-        }
-        public string Login
-        {
-            get { return _login; }
-            set => SetProperty(ref _login, value);
+            get { return _user; }
+            set => SetProperty(ref _user, value);
         }
         public bool MustChangePassword
         {
@@ -71,7 +59,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         #region Method
         private async void OnConfirmAddExec()
         {
-            var createUserOption = new IO.Swagger.Model.CreateUserOption(Email, FullName, Login, MustChangePassword, Password, SendNotify, null, UserName, null);
+            var createUserOption = new IO.Swagger.Model.CreateUserOption(User.Email, User.FullName, User.Login, MustChangePassword, Password, SendNotify, null, UserName, null);
 
             try
             {
@@ -79,10 +67,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
             }
             catch (Exception e)
             {
-                using (_logger.BeginScope(e.Message))
-                {
-                    _logger.LogWarning("The message has been processed.");
-                }
+                _logger.LogWarning(e.Message);
             }
             await _navigationService.Close(this);
         }
@@ -96,9 +81,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         public async override Task Initialize()
         {
             await base.Initialize();
-            Email = string.Empty;
-            FullName = string.Empty;
-            Login = string.Empty;
+            User = new();
             UserName = string.Empty;
             Password = string.Empty;
             SendNotify = false;

@@ -12,19 +12,19 @@
                   Title="Add user" Height="600" Width="450">
 
     <StackPanel Style="{DynamicResource ResourceKey=GlobalStackPanel}">
-        
-            <StackPanel Orientation="Vertical" Margin="0, 0, 0, 10">
-                <StackPanel Margin="0, 0, 0, 10">
-                    <TextBox Text="{Binding Path=Login, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Login" />
-                    <TextBox Text="{Binding Path=Password, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Password" />
-                    <TextBox Text="{Binding Path=UserName, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="User name" />
-                    <TextBox Text="{Binding Path=Email, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Email" />
-                    <TextBox Text="{Binding Path=FullName, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}"  Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Full name" />
-                </StackPanel>
-                <StackPanel Orientation="Horizontal">
-                    <CheckBox Grid.Column="0" IsChecked="{Binding Path=SendNotify, Mode=TwoWay}"  Margin="10, 0, 10, 0" Content="Send notify" />
-                    <CheckBox Grid.Column="1" IsChecked="{Binding Path=MustChangePassword, Mode=TwoWay}" Margin="10, 0, 10, 0" Content="Must change password" />
-                </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="0, 0, 0, 10">
+            <StackPanel Margin="0, 0, 0, 10">
+                <TextBox Text="{Binding Path=User.Login, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Login" />
+                <TextBox Text="{Binding Path=Password, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Password" />
+                <TextBox Text="{Binding Path=UserName, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="User name" />
+                <TextBox Text="{Binding Path=User.Email, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Email" />
+                <TextBox Text="{Binding Path=User.FullName, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}"  Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Full name" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <CheckBox Grid.Column="0" IsChecked="{Binding Path=SendNotify, Mode=TwoWay}"  Margin="10, 0, 10, 0" Content="Send notify" />
+                <CheckBox Grid.Column="1" IsChecked="{Binding Path=MustChangePassword, Mode=TwoWay}" Margin="10, 0, 10, 0" Content="Must change password" />
+            </StackPanel>
         </StackPanel>
 
         <Button Command="{Binding Path=ConfirmAddCommand}" Style="{DynamicResource ResourceKey=BtnCheck}" />
