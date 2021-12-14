@@ -1,14 +1,17 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.ObjectModel;
 using System.IO;
 
 namespace GiteaClient.Core.ViewModels.About
 {
-    public class ShowLogViewModel : ViewModelBase
+    public class ShowLogViewModel : MvxViewModel
     {
         #region Attribute
+        protected ILogger<ShowLogViewModel> _logger { get; set; }
+
         private ObservableCollection<string> _logs = new();
         #endregion
         #region Accessor
@@ -19,8 +22,9 @@ namespace GiteaClient.Core.ViewModels.About
         }
         #endregion
         #region Constructor
-        public ShowLogViewModel(IMvxNavigationService navigationService, ILogger<ShowLogViewModel> logger) : base(navigationService, logger)
+        public ShowLogViewModel(ILogger<ShowLogViewModel> logger)
         {
+            _logger = logger;
         }
         #endregion
         #region Command

@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +9,17 @@ using System.Threading.Tasks;
 
 namespace GiteaClient.Core.ViewModels.Notification
 {
-    public class IndexViewModel : ViewModelBase
+    public class IndexViewModel : MvxViewModel
     {
         #region Attribute
+        protected ILogger<IndexViewModel> _logger { get; set; }
         #endregion
         #region Accessor
         #endregion
         #region Constructor
-        public IndexViewModel(IMvxNavigationService navigationService, ILogger<IndexViewModel> logger) : base(navigationService, logger)
+        public IndexViewModel(ILogger<IndexViewModel> logger)
         {
+            _logger = logger;
         }
         #endregion
         #region Command

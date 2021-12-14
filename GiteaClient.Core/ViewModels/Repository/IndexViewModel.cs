@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,12 @@ using System.Text;
 using System.Threading.Tasks;
 namespace GiteaClient.Core.ViewModels.Repository
 {
-    public class IndexViewModel : ViewModelBase
+    public class IndexViewModel : MvxViewModel
     {
-        public IndexViewModel(IMvxNavigationService navigationService, ILogger<IndexViewModel> logger) : base(navigationService, logger) { }
+        protected ILogger<IndexViewModel> _logger { get; set; }
+        public IndexViewModel(ILogger<IndexViewModel> logger)
+        {
+            _logger = logger;
+        }
     }
 }

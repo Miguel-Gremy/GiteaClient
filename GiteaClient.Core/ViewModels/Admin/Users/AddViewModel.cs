@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,12 @@ using System.Threading.Tasks;
 
 namespace GiteaClient.Core.ViewModels.Admin.Users
 {
-    public class AddViewModel : ViewModelBase
+    public class AddViewModel : MvxViewModel
     {
         #region Attribute
+        protected ILogger<AddViewModel> _logger { get; set; }
+        protected IMvxNavigationService _navigationService { get; set; }
+
         private IAdminApi _adminApi { get; set; }
         private IO.Swagger.Model.User _user;
         private string _userName;
@@ -48,8 +52,10 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         }
         #endregion
         #region Constructor
-        public AddViewModel(IMvxNavigationService navigationService, ILogger<AddViewModel> logger, IAdminApi adminApi) : base(navigationService, logger)
+        public AddViewModel(IMvxNavigationService navigationService, ILogger<AddViewModel> logger, IAdminApi adminApi)
         {
+            _navigationService = navigationService;
+            _logger = logger;
             _adminApi = adminApi;
         }
         #endregion

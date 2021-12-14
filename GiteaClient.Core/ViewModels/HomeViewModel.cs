@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,19 @@ using System.Threading.Tasks;
 
 namespace GiteaClient.Core.ViewModels
 {
-    public class HomeViewModel : ViewModelBase
+    public class HomeViewModel : MvxViewModel
     {
         #region Attribute
+        protected ILogger<HomeViewModel> _logger { get; set; }
+        protected IMvxNavigationService _navigationService { get; set; }
         #endregion
         #region Accessor
         #endregion
         #region Constructor
-        public HomeViewModel(IMvxNavigationService navigationService, ILogger<HomeViewModel> logger) : base(navigationService, logger)
+        public HomeViewModel(IMvxNavigationService navigationService, ILogger<HomeViewModel> logger)
         {
+            _navigationService = navigationService;
+            _logger = logger;
         }
         #endregion
         #region Command

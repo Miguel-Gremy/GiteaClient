@@ -1,7 +1,9 @@
-﻿using IO.Swagger.Api;
+﻿using GiteaClient.Core.Assets;
+using IO.Swagger.Api;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,9 +13,12 @@ using System.Threading.Tasks;
 
 namespace GiteaClient.Core.ViewModels.Admin.Users
 {
-    public class ListViewModel : ViewModelBase
+    public class ListViewModel : MvxViewModel
     {
         #region Attribute
+        protected ILogger<ListViewModel> _logger { get; set; }
+        protected IMvxNavigationService _navigationService { get; set; }
+
         private IAdminApi _adminApi { get; set; }
         private ObservableCollection<IO.Swagger.Model.User> _users;
         private IO.Swagger.Model.User _selectedUser;
@@ -31,8 +36,10 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         }
         #endregion
         #region Constructor
-        public ListViewModel(IMvxNavigationService navigationService, ILogger<ListViewModel> logger, IAdminApi adminApi) : base(navigationService, logger)
+        public ListViewModel(IMvxNavigationService navigationService, ILogger<ListViewModel> logger, IAdminApi adminApi)
         {
+            _navigationService = navigationService;
+            _logger = logger;
             _adminApi = adminApi;
         }
         #endregion
@@ -45,7 +52,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         {
             try
             {
-                Users = ListToObservable(await Task.Run(() => _adminApi.AdminGetAllUsers()));
+                Users = GlobalFunc.ListToObservable(await Task.Run(() => _adminApi.AdminGetAllUsers()));
             }
             catch (Exception e)
             {
