@@ -13,7 +13,7 @@ namespace GiteaClient.Core
     public class MainWindowViewModel : MvxViewModel
     {
         protected ILogger<MainWindowViewModel> _logger { get; set; }
-        public MainWindowViewModel(IMvxNavigationService navigationService, ILogger<MainWindowViewModel> logger)
+        public MainWindowViewModel(ILogger<MainWindowViewModel> logger)
         {
             _logger = logger;
         }

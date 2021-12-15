@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -46,13 +47,14 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         #region Command
         public IMvxCommand NavigationAddCommand { get; set; }
         public IMvxCommand RefreshUsersCommand { get; set; }
+        public IMvxCommand NavigationDetailUser { get; set; }
         #endregion
         #region Method
         private async Task UpdateUsersAsync()
         {
             try
             {
-                Users = GlobalFunc.ListToObservable(await Task.Run(() => _adminApi.AdminGetAllUsers()));
+                Users = GlobalFunc.ListToObservable(await _adminApi.AdminGetAllUsersAsync());
             }
             catch (Exception e)
             {
@@ -66,6 +68,8 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
             base.Prepare();
             NavigationAddCommand = new MvxCommand(() => _navigationService.Navigate<AddViewModel>());
             RefreshUsersCommand = new MvxAsyncCommand(async () => await UpdateUsersAsync());
+            NavigationDetailUser = new MvxAsyncCommand(() => _navigationService
+                .Navigate<DetailViewModel, DetailNavigationArgs>(new DetailNavigationArgs { User = SelectedUser }));
         }
         public async override Task Initialize()
         {
@@ -76,6 +80,21 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         {
             base.ViewAppearing();
             await UpdateUsersAsync();
+        }
+        public override Task RaisePropertyChanged([CallerMemberName] string whichProperty = "")
+        {
+            switch (whichProperty)
+            {
+                case nameof(SelectedUser):
+                    if (SelectedUser is not null)
+                    {
+                        NavigationDetailUser.Execute();
+                    }
+                    break;
+                default:
+                    break;
+            }
+            return base.RaisePropertyChanged(whichProperty);
         }
         #endregion
     }

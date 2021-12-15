@@ -8,7 +8,7 @@ namespace GiteaClient.WPF.Views.Admin.Users
     /// <summary>
     /// Logique d'interaction pour IndexView.xaml
     /// </summary>
-    [MvxWindowPresentation]
+    [MvxWindowPresentation(Modal = true)]
     [MvxViewFor(typeof(AddViewModel))]
     public partial class AddView : MvxWindow
     {

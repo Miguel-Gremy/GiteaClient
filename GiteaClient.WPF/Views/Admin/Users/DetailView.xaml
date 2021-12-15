@@ -1,0 +1,71 @@
+﻿<views:MvxWindow x:Class="GiteaClient.WPF.Views.Admin.Users.DetailView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GiteaClient.WPF.Views.Admin.Users"
+      xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+      xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+      xmlns:viewModel="clr-namespace:GiteaClient.Core.ViewModels.Admin.Users;assembly=GiteaClient.Core"
+      mc:Ignorable="d"
+      d:DataContext="{x:Static viewModel:DetailViewModel}"
+      Title="Deail user" Height="600" Width="450">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Style="{DynamicResource ResourceKey=GlobalStackPanel}">
+
+            <StackPanel Orientation="Vertical" Margin="0, 0, 0, 10" CanVerticallyScroll="True">
+                <StackPanel Margin="0, 0, 0, 10">
+                    <TextBox IsEnabled="False" Text="{Binding Path=User.Login, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Login" />
+                    <TextBox IsEnabled="False" Text="{Binding Path=User.Email, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Email" />
+                    <TextBox IsEnabled="False" Text="{Binding Path=User.FullName, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}"  Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Full name" />
+                </StackPanel>
+                <TextBox IsEnabled="False" Text="Followers" />
+                <ListView ItemsSource="{Binding Path=Followers}" Style="{DynamicResource ResourceKey=MaxSizedListView}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Path=AvatarUrl}" Style="{DynamicResource ResourceKey=ListViewAvatar}" />
+                                <TextBlock Text="{Binding Path=FullName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBox IsEnabled="False" Text="Following" />
+                <ListView ItemsSource="{Binding Path=Following}" Style="{DynamicResource ResourceKey=MaxSizedListView}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Path=AvatarUrl}" Style="{DynamicResource ResourceKey=ListViewAvatar}" />
+                                <TextBlock Text="{Binding Path=FullName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBox IsEnabled="False" Text="User repositories" />
+                <ListView ItemsSource="{Binding Path=UserRepositories}" Style="{DynamicResource ResourceKey=MaxSizedListView}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Path=AvatarUrl}" Style="{DynamicResource ResourceKey=ListViewAvatar}" />
+                                <TextBlock Text="{Binding Path=FullName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <TextBox IsEnabled="False" Text="User subscribed repositories" />
+                <ListView ItemsSource="{Binding Path=UserSubscribedRepositories}" Style="{DynamicResource ResourceKey=MaxSizedListView}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="{Binding Path=AvatarUrl}" Style="{DynamicResource ResourceKey=ListViewAvatar}" />
+                                <TextBlock Text="{Binding Path=FullName}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</views:MvxWindow>

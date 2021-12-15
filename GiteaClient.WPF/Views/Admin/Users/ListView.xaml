@@ -20,11 +20,11 @@
             <Button Grid.Column="1" Command="{Binding Path=NavigationAddCommand}" Style="{DynamicResource ResourceKey=BtnAdd}" Margin="10, 0, 10, 0" />
         </Grid>
 
-        <ListView ItemsSource="{Binding Path=Users}">
+        <ListView ItemsSource="{Binding Path=Users}" SelectedItem="{Binding Path=SelectedUser, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="{Binding Path=AvatarUrl}" Width="20" Margin="0, 0, 10, 0" />
+                        <Image Source="{Binding Path=AvatarUrl}" Style="{DynamicResource ResourceKey=ListViewAvatar}" />
                         <TextBlock Text="{Binding Path=FullName}" />
                     </StackPanel>
                 </DataTemplate>

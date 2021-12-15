@@ -4,6 +4,8 @@
         <ResourceDictionary Source="Style/Button.xaml" />
         <ResourceDictionary Source="Style/TextBox.xaml" />
         <ResourceDictionary Source="Style/StackPanel.xaml" />
+        <ResourceDictionary Source="Style/ListView.xaml" />
+        <ResourceDictionary Source="Style/Image.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>
