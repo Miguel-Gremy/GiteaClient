@@ -76,11 +76,6 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
             await base.Initialize();
             await UpdateUsersAsync();
         }
-        public async override void ViewAppearing()
-        {
-            base.ViewAppearing();
-            await UpdateUsersAsync();
-        }
         public override Task RaisePropertyChanged([CallerMemberName] string whichProperty = "")
         {
             switch (whichProperty)
