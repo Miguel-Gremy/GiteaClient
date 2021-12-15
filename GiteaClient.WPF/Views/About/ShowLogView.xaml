@@ -8,7 +8,7 @@
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
                   mc:Ignorable="d"
                   d:DataContext="{x:Static viewModel:ShowLogViewModel}"
-                  Title="List users" Height="450" Width="600">
+                  Title="List users" Height="450" Width="600" WindowState="Maximized">
 
     
         <ListView ItemsSource="{Binding Path=Logs}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" />

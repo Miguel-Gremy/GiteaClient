@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using GiteaClient.Core.Data;
+using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
@@ -28,13 +29,8 @@ namespace GiteaClient.Core.ViewModels
         #region Command
         public IMvxCommand NavigationAdminUserListCommand { get; set; }
         public IMvxCommand NavigationAdminUserAddCommand { get; set; }
-        //public IMvxCommand NavigationIssueCommand { get; set; }
-        //public IMvxCommand NavigationMiscellaneousCommand { get; set; }
-        //public IMvxCommand NavigationNotificationCommand { get; set; }
-        //public IMvxCommand NavigationOrganizationCommand { get; set; }
-        //public IMvxCommand NavigationRepositoryCommand { get; set; }
-        //public IMvxCommand NavigationSettingsCommand { get; set; }
-        //public IMvxCommand NavigationUserCommand { get; set; }
+
+        public IMvxCommand NavigationAboutApplicationSettingsCommand { get; set; }
         public IMvxCommand NavigationAboutShowLogCommand { get; set; }
         #endregion
         #region Method
@@ -49,6 +45,9 @@ namespace GiteaClient.Core.ViewModels
             NavigationAdminUserAddCommand =
                 new MvxAsyncCommand(() => _navigationService.Navigate<Admin.Users.AddViewModel>());
 
+            NavigationAboutApplicationSettingsCommand =
+                new MvxAsyncCommand(() => _navigationService
+                    .Navigate<About.ApplicationSettingsViewModel, About.ApplicationSettingNavigationArgs>(new About.ApplicationSettingNavigationArgs { AppCnfig = AppConfig.s_GetConfig() }));
             NavigationAboutShowLogCommand =
                 new MvxAsyncCommand(() => _navigationService.Navigate<About.ShowLogViewModel>());
         }

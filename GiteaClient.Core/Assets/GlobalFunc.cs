@@ -13,5 +13,10 @@ namespace GiteaClient.Core.Assets
         {
             return new ObservableCollection<T>(list);
         }
+
+        public static ObservableCollection<T> ListToReversedObservable<T>(ICollection<T> list)
+        {
+            return new ObservableCollection<T>(list.Reverse());
+        }
     }
 }
