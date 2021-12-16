@@ -2,7 +2,8 @@
                     xmlns:fa="http://schemas.fontawesome.io/icons/"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <Style x:Key="BtnRefresh" x:Name="BtnRefresh" TargetType="Button" BasedOn="{StaticResource ResourceKey=MaterialDesignOutlinedButton}">
+    <Style x:Key="BtnRefresh" x:Name="BtnRefresh" TargetType="Button"
+           BasedOn="{StaticResource ResourceKey=MaterialDesignOutlinedButton}">
         <Setter Property="Content">
             <Setter.Value>
                 <fa:FontAwesome Icon="Refresh" />
@@ -10,7 +11,8 @@
         </Setter>
     </Style>
 
-    <Style x:Key="BtnCheck" x:Name="BtnCheck" TargetType="Button" BasedOn="{StaticResource ResourceKey=MaterialDesignOutlinedButton}">
+    <Style x:Key="BtnCheck" x:Name="BtnCheck" TargetType="Button"
+           BasedOn="{StaticResource ResourceKey=MaterialDesignOutlinedButton}">
         <Setter Property="Content">
             <Setter.Value>
                 <fa:FontAwesome Icon="Check" />
@@ -18,7 +20,8 @@
         </Setter>
     </Style>
 
-    <Style x:Key="BtnAdd" x:Name="BtnAdd" TargetType="Button" BasedOn="{StaticResource ResourceKey=MaterialDesignOutlinedButton}">
+    <Style x:Key="BtnAdd" x:Name="BtnAdd" TargetType="Button"
+           BasedOn="{StaticResource ResourceKey=MaterialDesignOutlinedButton}">
         <Setter Property="Content">
             <Setter.Value>
                 <fa:FontAwesome Icon="PlusCircle" />

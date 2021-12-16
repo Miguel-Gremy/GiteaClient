@@ -1,17 +1,18 @@
 ﻿<views:MvxWindow x:Class="GiteaClient.WPF.Views.About.ShowLogView"
-                  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-                  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                  xmlns:local="clr-namespace:GiteaClient.WPF.Views.About"
-                  xmlns:viewModel="clr-namespace:GiteaClient.Core.ViewModels.About;assembly=GiteaClient.Core"
-                  xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-                  mc:Ignorable="d"
-                  d:DataContext="{x:Static viewModel:ShowLogViewModel}"
-                  Title="List users" Height="450" Width="600" WindowState="Maximized">
+                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                 xmlns:local="clr-namespace:GiteaClient.WPF.Views.About"
+                 xmlns:viewModel="clr-namespace:GiteaClient.Core.ViewModels.About;assembly=GiteaClient.Core"
+                 xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
+                 mc:Ignorable="d"
+                 d:DataContext="{d:DesignInstance viewModel:ShowLogViewModel}"
+                 Title="List users" Height="450" Width="600" WindowState="Maximized">
 
-    
-        <ListView ItemsSource="{Binding Path=Logs}" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Visible" />
-    
+
+    <ListView ItemsSource="{Binding Path=Logs}" ScrollViewer.CanContentScroll="True"
+              ScrollViewer.VerticalScrollBarVisibility="Visible" />
+
 
 </views:MvxWindow>

@@ -1,20 +1,21 @@
-﻿using System;
+﻿#region
+
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+#endregion
 
 namespace GiteaClient.Core.Assets
 {
     public static class GlobalFunc
     {
-        public static ObservableCollection<T> ListToObservable<T>(ICollection<T> list)
+        public static ObservableCollection<T> ListToObservable<T>(IEnumerable<T> list)
         {
             return new ObservableCollection<T>(list);
         }
 
-        public static ObservableCollection<T> ListToReversedObservable<T>(ICollection<T> list)
+        public static ObservableCollection<T> ListToReversedObservable<T>(IEnumerable<T> list)
         {
             return new ObservableCollection<T>(list.Reverse());
         }

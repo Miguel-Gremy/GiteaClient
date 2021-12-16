@@ -7,7 +7,7 @@
                   xmlns:local="clr-namespace:GiteaClient.WPF.Views"
                   xmlns:fa="http://schemas.fontawesome.io/icons/"
                   xmlns:views="clr-namespace:MvvmCross.Platforms.Wpf.Views;assembly=MvvmCross.Platforms.Wpf"
-                  d:DataContext="{x:Static viewModel:HomeViewModel}"
+                  d:DataContext="{d:DesignInstance viewModel:HomeViewModel}"
                   mc:Ignorable="d"
                   d:DesignHeight="800" d:DesignWidth="450">
 
@@ -15,7 +15,7 @@
         <Menu DockPanel.Dock="Left">
             <Menu.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <VirtualizingStackPanel Orientation="Vertical"/>
+                    <VirtualizingStackPanel Orientation="Vertical" />
                 </ItemsPanelTemplate>
             </Menu.ItemsPanel>
             <MenuItem Header="_Admin">
@@ -23,9 +23,9 @@
                     <fa:FontAwesome Icon="Cogs" />
                 </MenuItem.Icon>
 
-                <MenuItem Header="_Cron"></MenuItem>
-                <MenuItem Header="_Organizations"></MenuItem>
-                <MenuItem Header="_Unadopted"></MenuItem>
+                <MenuItem Header="_Cron" />
+                <MenuItem Header="_Organizations" />
+                <MenuItem Header="_Unadopted" />
                 <MenuItem Header="_Users">
                     <MenuItem.Icon>
                         <fa:FontAwesome Icon="Users" />
@@ -34,15 +34,16 @@
                     <MenuItem Header="_Keys">
                         <MenuItem Header="_List" />
                     </MenuItem>
-                    <MenuItem Header="_List" Command="{Binding Path=NavigationAdminUserListCommand}" />
+                    <MenuItem Header="_List"
+                              Command="{Binding Path=NavigationAdminUserListCommand}" />
                     <MenuItem Header="_Add" Command="{Binding Path=NavigationAdminUserAddCommand}" />
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="_Issue"></MenuItem>
-            <MenuItem Header="_Miscelaneous"></MenuItem>
-            <MenuItem Header="_Notification"></MenuItem>
-            <MenuItem Header="_Organization"></MenuItem>
-            <MenuItem Header="_Repository"></MenuItem>
+            <MenuItem Header="_Issue" />
+            <MenuItem Header="_Miscelaneous" />
+            <MenuItem Header="_Notification" />
+            <MenuItem Header="_Organization" />
+            <MenuItem Header="_Repository" />
             <MenuItem Header="_Settings">
                 <MenuItem.Icon>
                     <fa:FontAwesome Icon="Sliders" />
@@ -61,13 +62,15 @@
                     <fa:FontAwesome Icon="Info" />
                 </MenuItem.Icon>
 
-                <MenuItem Header="_Application settings" Command="{Binding Path=NavigationAboutApplicationSettingsCommand}">
+                <MenuItem Header="_Application settings"
+                          Command="{Binding Path=NavigationAboutApplicationSettingsCommand}">
                     <MenuItem.Icon>
                         <fa:FontAwesome Icon="Sliders" />
                     </MenuItem.Icon>
 
                 </MenuItem>
-                <MenuItem Header="_Show logs" Command="{Binding Path=NavigationAboutShowLogCommand}">
+                <MenuItem Header="_Show logs"
+                          Command="{Binding Path=NavigationAboutShowLogCommand}">
                     <MenuItem.Icon>
                         <fa:FontAwesome Icon="History" />
                     </MenuItem.Icon>
@@ -76,9 +79,7 @@
 
             </MenuItem>
         </Menu>
-        <StackPanel Style="{DynamicResource ResourceKey=GlobalStackPanel}">
-
-        </StackPanel>
+        <StackPanel Style="{DynamicResource ResourceKey=GlobalStackPanel}" />
     </DockPanel>
 
 </views:MvxWpfView>

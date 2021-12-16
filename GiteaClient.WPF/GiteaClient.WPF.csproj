@@ -1,108 +1,108 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <UseWPF>true</UseWPF>
-  </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
+        <PackageReference Include="MaterialDesignColors" Version="2.0.4" />
+        <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
+        <PackageReference Include="MvvmCross" Version="8.0.2" />
+        <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
+        <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
+        <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
+        <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
-    <PackageReference Include="MaterialDesignColors" Version="2.0.4" />
-    <PackageReference Include="MaterialDesignThemes" Version="4.3.0" />
-    <PackageReference Include="MvvmCross" Version="8.0.2" />
-    <PackageReference Include="MvvmCross.Platforms.Wpf" Version="8.0.2" />
-    <PackageReference Include="Serilog.Extensions.Logging" Version="3.1.0" />
-    <PackageReference Include="Serilog.Sinks.Debug" Version="2.0.0" />
-    <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\GiteaClient.Core\GiteaClient.Core.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\GiteaClient.Core\GiteaClient.Core.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Views\About\ShowLogView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Admin\Users\AddView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Admin\Users\ListView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Issue\IndexView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Miscellaneous\IndexView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Notification\IndexView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Organization\IndexView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Repository\IndexView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\Settings\IndexView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\User\HomeView.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Views\About\ShowLogView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Admin\Users\AddView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Admin\Users\ListView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Issue\IndexView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Miscellaneous\IndexView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Notification\IndexView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Organization\IndexView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Repository\IndexView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\Settings\IndexView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Update="Views\User\HomeView.xaml.cs">
-      <SubType>Code</SubType>
-    </Compile>
-  </ItemGroup>
+    <ItemGroup>
+        <Page Update="Views\About\ShowLogView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\Admin\Users\AddView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\Admin\Users\ListView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\Issue\IndexView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\Miscellaneous\IndexView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\Notification\IndexView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\Organization\IndexView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\Repository\IndexView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\Settings\IndexView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+        <Page Update="Views\User\HomeView.xaml">
+            <SubType>Designer</SubType>
+            <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+        </Page>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Page Update="Views\About\ShowLogView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Admin\Users\AddView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Admin\Users\ListView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Issue\IndexView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Miscellaneous\IndexView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Notification\IndexView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Organization\IndexView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Repository\IndexView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\Settings\IndexView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Views\User\HomeView.xaml">
-      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
-      <SubType>Designer</SubType>
-    </Page>
-  </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Views\Admin\Cron\" />
+        <Folder Include="Views\Admin\Unadopted\" />
+        <Folder Include="Views\Admin\Orgs\" />
+        <Folder Include="Views\Admin\Users\Keys\" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Admin\Cron\" />
-    <Folder Include="Views\Admin\Unadopted\" />
-    <Folder Include="Views\Admin\Orgs\" />
-    <Folder Include="Views\Admin\Users\Keys\" />
-  </ItemGroup>
+    <PropertyGroup>
+        <Nullable>enable</Nullable>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net5.0-windows</TargetFramework>
+        <UseWPF>true</UseWPF>
+    </PropertyGroup>
 
 </Project>

@@ -3,7 +3,7 @@ using MvvmCross.Platforms.Wpf.Presenters.Attributes;
 using MvvmCross.Platforms.Wpf.Views;
 using MvvmCross.ViewModels;
 
-namespace GiteaClient.WPF.Views.Respository
+namespace GiteaClient.WPF.Views.Repository
 {
     /// <summary>
     /// Logique d'interaction pour HomeView.xaml

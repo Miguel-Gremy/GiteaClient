@@ -1,13 +1,13 @@
-﻿using GiteaClient.Core.Data;
+﻿#region
+
+using System.Threading.Tasks;
+using GiteaClient.Core.Data;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+#endregion
 
 namespace GiteaClient.Core.ViewModels.About
 {
@@ -18,42 +18,57 @@ namespace GiteaClient.Core.ViewModels.About
 
     public class ApplicationSettingsViewModel : MvxViewModel<ApplicationSettingNavigationArgs>
     {
-        #region Attribute
-        public ILogger<ApplicationSettingsViewModel> _logger { get; set; }
-        public IMvxNavigationService _navigationService { get; set; }
+        #region Constructor
 
-        private AppConfig _appConfig;
+        public ApplicationSettingsViewModel(IMvxNavigationService navigationService)
+        {
+            NavigationService = navigationService;
+        }
+
         #endregion
+
         #region Accessor
+
         public AppConfig AppConfig
         {
-            get { return _appConfig; }
-            set => SetProperty(ref _appConfig, value);
+            get => _appConfig;
+            private set => SetProperty(ref _appConfig, value);
         }
+
         #endregion
-        #region Constructor
-        public ApplicationSettingsViewModel(ILogger<ApplicationSettingsViewModel> logger, IMvxNavigationService navigationService)
-        {
-            _logger = logger;
-            _navigationService = navigationService;
-        }
-        #endregion
+
         #region Command
-        public IMvxCommand ConfirmSaveConfig { get; set; }
+
+        public IMvxCommand ConfirmSaveConfig { get; private set; }
+
         #endregion
+
         #region Method
+
         private async Task OnConfirmSaveExec(ApplicationSettingNavigationArgs args)
         {
-            await AppConfig.s_SaveConfig(args.AppConfig);
-            await _navigationService.Close(this);
+            await AppConfig.s_SaveConfigAsync(args.AppConfig);
+            await NavigationService.Close(this);
         }
+
         #endregion
+
         #region Override_Method
+
         public override void Prepare(ApplicationSettingNavigationArgs args)
         {
             AppConfig = args.AppConfig;
             ConfirmSaveConfig = new MvxAsyncCommand(async () => await OnConfirmSaveExec(args));
         }
+
+        #endregion
+
+        #region Attribute
+
+        private IMvxNavigationService NavigationService { get; set; }
+
+        private AppConfig _appConfig;
+
         #endregion
     }
 }

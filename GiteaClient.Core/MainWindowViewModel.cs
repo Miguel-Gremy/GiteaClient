@@ -1,21 +1,40 @@
-﻿using GiteaClient.Core.ViewModels;
+﻿#region
+
 using Microsoft.Extensions.Logging;
-using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+#endregion
 
 namespace GiteaClient.Core
 {
     public class MainWindowViewModel : MvxViewModel
     {
-        protected ILogger<MainWindowViewModel> _logger { get; set; }
-        public MainWindowViewModel(ILogger<MainWindowViewModel> logger)
+        #region Constructor
+
+        public MainWindowViewModel()
         {
-            _logger = logger;
         }
+
+        #endregion
+
+        #region Attribute
+
+        #endregion
+
+        #region Accessor
+
+        #endregion
+
+        #region Command
+
+        #endregion
+
+        #region Method
+
+        #endregion
+
+        #region Override_Method
+
+        #endregion
     }
 }

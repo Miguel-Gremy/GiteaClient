@@ -1,56 +1,72 @@
-﻿using GiteaClient.Core.Data;
+﻿#region
+
+using GiteaClient.Core.Data;
+using GiteaClient.Core.ViewModels.About;
+using GiteaClient.Core.ViewModels.Admin.Users;
 using Microsoft.Extensions.Logging;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
+#endregion
 
 namespace GiteaClient.Core.ViewModels
 {
     public class HomeViewModel : MvxViewModel
     {
-        #region Attribute
-        protected ILogger<HomeViewModel> _logger { get; set; }
-        protected IMvxNavigationService _navigationService { get; set; }
-        #endregion
-        #region Accessor
-        #endregion
         #region Constructor
-        public HomeViewModel(IMvxNavigationService navigationService, ILogger<HomeViewModel> logger)
-        {
-            _navigationService = navigationService;
-            _logger = logger;
-        }
-        #endregion
-        #region Command
-        public IMvxCommand NavigationAdminUserListCommand { get; set; }
-        public IMvxCommand NavigationAdminUserAddCommand { get; set; }
 
-        public IMvxCommand NavigationAboutApplicationSettingsCommand { get; set; }
-        public IMvxCommand NavigationAboutShowLogCommand { get; set; }
+        public HomeViewModel(IMvxNavigationService navigationService)
+        {
+            NavigationService = navigationService;
+        }
+
         #endregion
-        #region Method
-        #endregion
+
         #region Override_Method
+
         public override void Prepare()
         {
             base.Prepare();
 
             NavigationAdminUserListCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Admin.Users.ListViewModel>());
+                new MvxAsyncCommand(() => NavigationService.Navigate<ListViewModel>());
             NavigationAdminUserAddCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<Admin.Users.AddViewModel>());
+                new MvxAsyncCommand(() => NavigationService.Navigate<AddViewModel>());
 
             NavigationAboutApplicationSettingsCommand =
-                new MvxAsyncCommand(async () => await _navigationService
-                    .Navigate<About.ApplicationSettingsViewModel, About.ApplicationSettingNavigationArgs>(new About.ApplicationSettingNavigationArgs { AppConfig = await AppConfig.s_GetConfig() }));
+                new MvxAsyncCommand(async () => await NavigationService
+                    .Navigate<ApplicationSettingsViewModel, ApplicationSettingNavigationArgs>(
+                        new ApplicationSettingNavigationArgs
+                            { AppConfig = await AppConfig.s_GetConfigAsync() }));
             NavigationAboutShowLogCommand =
-                new MvxAsyncCommand(() => _navigationService.Navigate<About.ShowLogViewModel>());
+                new MvxAsyncCommand(() => NavigationService.Navigate<ShowLogViewModel>());
         }
+
+        #endregion
+
+        #region Attribute
+
+        private IMvxNavigationService NavigationService { get; set; }
+
+        #endregion
+
+        #region Accessor
+
+        #endregion
+
+        #region Command
+
+        public IMvxCommand NavigationAdminUserListCommand { get; private set; }
+        public IMvxCommand NavigationAdminUserAddCommand { get; private set; }
+
+        public IMvxCommand NavigationAboutApplicationSettingsCommand { get; private set; }
+        public IMvxCommand NavigationAboutShowLogCommand { get; private set; }
+
+        #endregion
+
+        #region Method
+
         #endregion
     }
 }

@@ -15,7 +15,7 @@ namespace GiteaClient.WPF
                 .WriteTo.File(@"log\log-.txt", rollingInterval: RollingInterval.Day,
                     retainedFileCountLimit: 15,
                     retainedFileTimeLimit: new System.TimeSpan(15, 0, 0, 0),
-                    outputTemplate: Helper.s_LogTemplate,
+                    outputTemplate: Helper.SLogTemplate,
                     shared: true)
                 .WriteTo.Debug()
                 .CreateLogger();
