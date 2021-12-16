@@ -46,7 +46,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
             }
             catch (Exception e)
             {
-                Logger.LogWarning("{e.Message}", e.Message);
+                Logger.LogWarning(e, "An error occured : {e.Message}", e.Message);
             }
 
             await NavigationService.Close(this);

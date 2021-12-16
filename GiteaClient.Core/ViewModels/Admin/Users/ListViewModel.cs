@@ -39,7 +39,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
             }
             catch (Exception e)
             {
-                Logger.LogWarning("{e.Message}", e.Message);
+                Logger.LogWarning(e, "An error occured : {e.Message}", e.Message);
             }
         }
 
@@ -90,7 +90,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
             RefreshUsersCommand = new MvxAsyncCommand(async () => await UpdateUsersAsync());
             NavigationDetailUser = new MvxAsyncCommand(() => NavigationService
                 .Navigate<DetailViewModel, DetailNavigationArgs>(new DetailNavigationArgs
-                    { User = SelectedUser }));
+                { User = SelectedUser }));
         }
 
         public override async Task Initialize()

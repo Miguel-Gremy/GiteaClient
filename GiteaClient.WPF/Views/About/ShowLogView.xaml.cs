@@ -8,7 +8,7 @@ namespace GiteaClient.WPF.Views.About
     /// <summary>
     /// Logique d'interaction pour IndexView.xaml
     /// </summary>
-    [MvxWindowPresentation]
+    [MvxWindowPresentation(Modal = true)]
     [MvxViewFor(typeof(ShowLogViewModel))]
     public partial class ShowLogView : MvxWindow
     {

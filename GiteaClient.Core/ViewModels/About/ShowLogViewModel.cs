@@ -44,7 +44,7 @@ namespace GiteaClient.Core.ViewModels.About
             }
             catch (Exception e)
             {
-                Logger.LogWarning("{e.Message}", e.Message);
+                Logger.LogWarning(e, "An error occured : {e.Message}", e.Message);
             }
         }
 
@@ -84,12 +84,13 @@ namespace GiteaClient.Core.ViewModels.About
                 try
                 {
                     foreach (var log in File.ReadAllText(item)
-                        .Split(Environment.NewLine + Environment.NewLine)) logs.Add(log);
+                        .Split("End of log"))
+                        logs.Add(log);
                     logs.Remove(string.Empty);
                 }
                 catch (Exception e)
                 {
-                    Logger.LogWarning("{e.Message}", e.Message);
+                    Logger.LogWarning(e, "An error occured : {e.Message}", e.Message);
                 }
 
             return logs;

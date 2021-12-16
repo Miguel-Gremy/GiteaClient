@@ -78,7 +78,7 @@ namespace GiteaClient.Core.Data
         #region Attribute
 
         public static string SLogTemplate =>
-            "{Timestamp:yyyy-MM-dd HH:mm:ss zzz} [{Level: u3}] [Context : {SourceContext}] => {Message: lj} {Exception} Properties ==> {Properties} {NewLine}{NewLine}";
+            "New log : {NewLine} [{Timestamp:yyyy-MM-dd HH:mm:ss zzz} {Level: u3}] {NewLine} [Context : {SourceContext}] => {Message: lj} {NewLine} [Properties] ==> {Properties} {NewLine} [Exception] ==> {Exception} End of log";
 
         #endregion
 
