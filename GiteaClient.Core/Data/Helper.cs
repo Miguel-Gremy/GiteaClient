@@ -1,4 +1,5 @@
 ﻿using IO.Swagger.Client;
+using MvvmCross;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,8 +17,9 @@ namespace GiteaClient.Core.Data
         private static string s_configFileName => @"app.json";
         public static string s_configFilePath => s_configFileDirectory + s_configFileName;
 
+        public bool IsUsingToken { get; set; } = false;
         public string BasePath { get; set; } = string.Empty;
-        public IDictionary<string, string> ApiKeys { get; set; } = new Dictionary<string, string>();
+        public string Token { get; set; } = string.Empty;
         public string UserName { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
 
@@ -27,15 +29,18 @@ namespace GiteaClient.Core.Data
         }
         public AppConfig(string basePath)
         {
-
+            BasePath = basePath;
         }
-        public AppConfig(string basePath, IDictionary<string, string> apiKeys)
+        public AppConfig(string basePath, string token)
         {
-
+            BasePath = basePath;
+            Token = token;
         }
         public AppConfig(string basePath, string userName, string password)
         {
-
+            BasePath = basePath;
+            UserName = userName;
+            Password = password;
         }
 
         public static AppConfig s_GetDefaultConfig()
@@ -43,15 +48,25 @@ namespace GiteaClient.Core.Data
             return new AppConfig("http://localhost");
         }
 
-        public static AppConfig s_GetConfig()
+        public async static Task<AppConfig> s_GetConfig()
         {
             if (!File.Exists(s_configFilePath))
             {
                 if (!Directory.Exists(s_configFileDirectory))
                     Directory.CreateDirectory(s_configFileDirectory);
-                File.WriteAllText(s_configFilePath, JsonSerializer.Serialize(s_GetDefaultConfig()));
+                await File.WriteAllTextAsync(s_configFilePath, JsonSerializer.Serialize(s_GetDefaultConfig()));
             }
             return JsonSerializer.Deserialize<AppConfig>(File.ReadAllText(s_configFilePath));
+        }
+
+        public async static Task s_SaveConfig(AppConfig appConfig)
+        {
+            if (!File.Exists(s_configFilePath))
+            {
+                if (!Directory.Exists(s_configFileDirectory))
+                    Directory.CreateDirectory(s_configFileDirectory);
+            }
+            await File.WriteAllTextAsync(s_configFilePath, JsonSerializer.Serialize(appConfig));
         }
     }
 
@@ -70,27 +85,30 @@ namespace GiteaClient.Core.Data
         }
         #endregion
         #region Method
-        public static Configuration s_GetConfiguration()
+        public async static Task<Configuration> s_GetConfiguration()
         {
             var apiConfig = Configuration.Default;
-            var appConfig = AppConfig.s_GetConfig();
+            var appConfig = await AppConfig.s_GetConfig();
 
             apiConfig.BasePath = appConfig.BasePath;
-            apiConfig.ApiKey = appConfig.ApiKeys;
-            apiConfig.Username = appConfig.UserName;
-            apiConfig.Password = appConfig.Password;
+            if (appConfig.IsUsingToken)
+            {
+                apiConfig.ApiKey.Remove("token");
+                apiConfig.ApiKey.Add("token", appConfig.Token);
+            }
+            else
+            {
+                apiConfig.Username = appConfig.UserName;
+                apiConfig.Password = appConfig.Password;
+            }
 
             return apiConfig;
         }
-        //public static Configuration s_GetConfiguration()
-        //{
-        //    var apiConfig = new Configuration
-        //    {
-        //        BasePath = "https://gitea.gremy.ovh/api/v1",
-        //    };
-        //    apiConfig.ApiKey.Add("token", "e0f5542a6570e3a9b5c188dbcff8f545030725f0");
-        //    return apiConfig;
-        //}
+
+        public async static Task s_SaveConfiguration(AppConfig appConfig)
+        {
+            await AppConfig.s_SaveConfig(appConfig);
+        }
         #endregion
     }
 }

@@ -15,20 +15,28 @@
 
         <StackPanel Orientation="Vertical" Margin="0, 0, 0, 10">
             <StackPanel Margin="0, 0, 0, 10">
-                <TextBox Text="{Binding Path=AppConfig.BasePath, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Login" />
-                <TextBox Text="{Binding Path=AppConfig.UserName, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Password" />
-                <TextBox Text="{Binding Path=AppConfig.Password, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="User name" />
-                <TextBox Text="{Binding Path=AppConfig, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Email" />
-                <DataGrid ItemsSource="{Binding Path=AppConfig.ApiKeys}" AutoGenerateColumns="False" SelectedValuePath="Value" CanUserAddRows="True">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Key" Binding="{Binding Path=Key}" />
-                        <DataGridTextColumn Header="Value" Binding="{Binding Path=Value}" />
-                    </DataGrid.Columns>
-                </DataGrid>
+                <TextBox Text="{Binding Path=AppConfig.BasePath, Mode=TwoWay}" Style="{DynamicResource ResourceKey=TxtBoxFormCreate}" Margin="10, 0, 10, 10" materialDesign:HintAssist.Hint="Link to gitea api (http[s]://gitea.example.com/api/v1)" />
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4*" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0" VerticalAlignment="Center" Orientation="Vertical" IsEnabled="{Binding Path=AppConfig.IsUsingToken, Converter={StaticResource ResourceKey=InvertBooleanConverter}}">
+                        <TextBox Text="{Binding Path=AppConfig.UserName, Mode=TwoWay}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Password" />
+                        <TextBox Text="{Binding Path=AppConfig.Password, Mode=TwoWay}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="User name" />
+                    </StackPanel>
+                    <CheckBox Grid.Column="1" VerticalAlignment="Center" Style="{StaticResource ResourceKey=MaterialDesignSwitchAccentToggleButton}" IsChecked="{Binding Path=AppConfig.IsUsingToken}" />
+                    <StackPanel Grid.Column="2" VerticalAlignment="Center" IsEnabled="{Binding Path=AppConfig.IsUsingToken}">
+                        <TextBox Text="{Binding Path=AppConfig.Token, Mode=TwoWay}" Margin="10, 0, 10, 0" materialDesign:HintAssist.Hint="Token" />
+                    </StackPanel>
+                </Grid>
             </StackPanel>
         </StackPanel>
 
-        <Button Command="{Binding Path=ConfirmAddCommand}" Style="{DynamicResource ResourceKey=BtnCheck}" />
+        <Button Command="{Binding Path=ConfirmSaveConfig}" Style="{DynamicResource ResourceKey=BtnCheck}" />
     </StackPanel>
 
 </views:MvxWindow>

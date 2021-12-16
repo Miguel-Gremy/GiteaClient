@@ -46,8 +46,8 @@ namespace GiteaClient.Core.ViewModels
                 new MvxAsyncCommand(() => _navigationService.Navigate<Admin.Users.AddViewModel>());
 
             NavigationAboutApplicationSettingsCommand =
-                new MvxAsyncCommand(() => _navigationService
-                    .Navigate<About.ApplicationSettingsViewModel, About.ApplicationSettingNavigationArgs>(new About.ApplicationSettingNavigationArgs { AppCnfig = AppConfig.s_GetConfig() }));
+                new MvxAsyncCommand(async () => await _navigationService
+                    .Navigate<About.ApplicationSettingsViewModel, About.ApplicationSettingNavigationArgs>(new About.ApplicationSettingNavigationArgs { AppConfig = await AppConfig.s_GetConfig() }));
             NavigationAboutShowLogCommand =
                 new MvxAsyncCommand(() => _navigationService.Navigate<About.ShowLogViewModel>());
         }
