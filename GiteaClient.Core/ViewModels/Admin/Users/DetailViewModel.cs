@@ -1,6 +1,7 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using GiteaClient.Core.Assets;
@@ -38,15 +39,19 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         {
             try
             {
+                Task<List<IO.Swagger.Model.User>> followersTask = UserApi.UserListFollowersAsync(User.Login);
+                Task<List<IO.Swagger.Model.User>> followingTask = UserApi.UserListFollowersAsync(User.Login);
+                Task<List<IO.Swagger.Model.Repository>> userRepositoriesTask = UserApi.UserListReposAsync(User.Login);
+                Task<List<IO.Swagger.Model.Repository>> userSubscribedRepositoriesTask = UserApi.UserListSubscriptionsAsync(User.Login);
+
                 Followers =
-                    GlobalFunc.ListToObservable(await UserApi.UserListFollowersAsync(User.Login));
+                    GlobalFunc.ListToObservable(await followersTask);
                 Following =
-                    GlobalFunc.ListToObservable(await UserApi.UserListFollowingAsync(User.Login));
+                    GlobalFunc.ListToObservable(await followingTask);
                 UserRepositories =
-                    GlobalFunc.ListToObservable(await UserApi.UserListReposAsync(User.Login));
+                    GlobalFunc.ListToObservable(await userRepositoriesTask);
                 UserSubscribedRepositories =
-                    GlobalFunc.ListToObservable(
-                        await UserApi.UserListSubscriptionsAsync(User.Login));
+                    GlobalFunc.ListToObservable(await userSubscribedRepositoriesTask);
             }
             catch (Exception e)
             {

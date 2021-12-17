@@ -35,7 +35,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
 
         #region Method
 
-        private async void OnConfirmAddExec()
+        private async Task OnConfirmAddExec()
         {
             var createUserOption = new CreateUserOption(User.Email, User.FullName, User.Login,
                 MustChangePassword, Password, SendNotify, null, UserName);
@@ -107,7 +107,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         public override void Prepare()
         {
             base.Prepare();
-            ConfirmAddCommand = new MvxAsyncCommand(() => Task.Run(OnConfirmAddExec));
+            ConfirmAddCommand = new MvxAsyncCommand(OnConfirmAddExec);
         }
 
         public override async Task Initialize()

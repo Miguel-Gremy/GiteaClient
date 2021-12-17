@@ -1,7 +1,9 @@
 ﻿#region
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using GiteaClient.Core.Assets;
@@ -35,7 +37,9 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         {
             try
             {
-                Users = GlobalFunc.ListToObservable(await AdminApi.AdminGetAllUsersAsync());
+                Task<List<IO.Swagger.Model.User>> usersTask = AdminApi.AdminGetAllUsersAsync();
+
+                Users = GlobalFunc.ListToObservable(await usersTask);
             }
             catch (Exception e)
             {
@@ -86,11 +90,13 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         {
             base.Prepare();
             NavigationAddCommand =
-                new MvxCommand(() => NavigationService.Navigate<AddViewModel>());
-            RefreshUsersCommand = new MvxAsyncCommand(async () => await UpdateUsersAsync());
-            NavigationDetailUser = new MvxAsyncCommand(() => NavigationService
-                .Navigate<DetailViewModel, DetailNavigationArgs>(new DetailNavigationArgs
-                { User = SelectedUser }));
+                new MvxAsyncCommand(() => NavigationService.Navigate<AddViewModel>());
+            RefreshUsersCommand =
+                new MvxAsyncCommand(UpdateUsersAsync);
+            NavigationDetailUser =
+                new MvxAsyncCommand(() => NavigationService
+                    .Navigate<DetailViewModel, DetailNavigationArgs>(new DetailNavigationArgs
+                    { User = SelectedUser }));
         }
 
         public override async Task Initialize()
