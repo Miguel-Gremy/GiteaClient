@@ -5,6 +5,7 @@ using GiteaClient.Core.ViewModels;
 using IO.Swagger.Api;
 using MvvmCross;
 using MvvmCross.ViewModels;
+using System.Threading.Tasks;
 
 #endregion
 
@@ -16,24 +17,26 @@ namespace GiteaClient.Core
         {
             base.Initialize();
 
+            Task<IO.Swagger.Client.Configuration> getConfigTask = Helper.s_GetConfigurationAsync();
+
             RegisterAppStart<HomeViewModel>();
 
             Mvx.IoCProvider.RegisterSingleton<IAdminApi>(
-                new AdminApi(await Helper.s_GetConfigurationAsync()));
+                new AdminApi(await getConfigTask));
             Mvx.IoCProvider.RegisterSingleton<IIssueApi>(
-                new IssueApi(await Helper.s_GetConfigurationAsync()));
+                new IssueApi(await getConfigTask));
             Mvx.IoCProvider.RegisterSingleton<IMiscellaneousApi>(
-                new MiscellaneousApi(await Helper.s_GetConfigurationAsync()));
+                new MiscellaneousApi(await getConfigTask));
             Mvx.IoCProvider.RegisterSingleton<INotificationApi>(
-                new NotificationApi(await Helper.s_GetConfigurationAsync()));
+                new NotificationApi(await getConfigTask));
             Mvx.IoCProvider.RegisterSingleton<IOrganizationApi>(
-                new OrganizationApi(await Helper.s_GetConfigurationAsync()));
+                new OrganizationApi(await getConfigTask));
             Mvx.IoCProvider.RegisterSingleton<IRepositoryApi>(
-                new RepositoryApi(await Helper.s_GetConfigurationAsync()));
+                new RepositoryApi(await getConfigTask));
             Mvx.IoCProvider.RegisterSingleton<ISettingsApi>(
-                new SettingsApi(await Helper.s_GetConfigurationAsync()));
+                new SettingsApi(await getConfigTask));
             Mvx.IoCProvider.RegisterSingleton<IUserApi>(
-                new UserApi(await Helper.s_GetConfigurationAsync()));
+                new UserApi(await getConfigTask));
         }
     }
 }

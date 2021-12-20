@@ -71,7 +71,7 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         private ObservableCollection<IO.Swagger.Model.User> _folowing;
         private ObservableCollection<IO.Swagger.Model.Repository> _userRepositories;
         private ObservableCollection<IO.Swagger.Model.Repository> _userSubscribedRepositories;
-        private ObservableCollection<AccessToken> _userAccessTokens;
+        private ObservableCollection<IO.Swagger.Model.AccessToken> _userAccessTokens;
 
         #endregion
 

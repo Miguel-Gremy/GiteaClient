@@ -90,7 +90,7 @@ namespace GiteaClient.Core.Data
 
         public static async Task<Configuration> s_GetConfigurationAsync()
         {
-            var apiConfig = Configuration.Default;
+            var apiConfig = IO.Swagger.Client.Configuration.Default;
             var appConfig = await AppConfig.s_GetConfigAsync();
 
             apiConfig.BasePath = appConfig.BasePath;
