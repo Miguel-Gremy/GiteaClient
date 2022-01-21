@@ -40,14 +40,14 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
             try
             {
                 Task<List<IO.Swagger.Model.User>> followersTask = UserApi.UserListFollowersAsync(User.Login);
-                Task<List<IO.Swagger.Model.User>> followingTask = UserApi.UserListFollowersAsync(User.Login);
+                Task<List<IO.Swagger.Model.User>> followingsTask = UserApi.UserListFollowersAsync(User.Login);
                 Task<List<IO.Swagger.Model.Repository>> userRepositoriesTask = UserApi.UserListReposAsync(User.Login);
                 Task<List<IO.Swagger.Model.Repository>> userSubscribedRepositoriesTask = UserApi.UserListSubscriptionsAsync(User.Login);
 
                 Followers =
                     GlobalFunc.ListToObservable(await followersTask);
                 Following =
-                    GlobalFunc.ListToObservable(await followingTask);
+                    GlobalFunc.ListToObservable(await followingsTask);
                 UserRepositories =
                     GlobalFunc.ListToObservable(await userRepositoriesTask);
                 UserSubscribedRepositories =
@@ -71,7 +71,6 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         private ObservableCollection<IO.Swagger.Model.User> _folowing;
         private ObservableCollection<IO.Swagger.Model.Repository> _userRepositories;
         private ObservableCollection<IO.Swagger.Model.Repository> _userSubscribedRepositories;
-        private ObservableCollection<IO.Swagger.Model.AccessToken> _userAccessTokens;
 
         #endregion
 
@@ -105,12 +104,6 @@ namespace GiteaClient.Core.ViewModels.Admin.Users
         {
             get => _userSubscribedRepositories;
             private set => SetProperty(ref _userSubscribedRepositories, value);
-        }
-
-        public ObservableCollection<AccessToken> UserAccessTokens
-        {
-            get => _userAccessTokens;
-            set => SetProperty(ref _userAccessTokens, value);
         }
 
         #endregion
